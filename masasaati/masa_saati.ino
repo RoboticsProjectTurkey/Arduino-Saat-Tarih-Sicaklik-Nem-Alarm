@@ -1,14 +1,3 @@
-/*
-  base sketch: https://cdn.sparkfun.com/datasheets/Components/LED/_7Seg_Example.pde
-  4 digit 7 segment display: http://www.sparkfun.com/products/9483
-  7 segments + 4 digits + 1 colon = 12 pins required for full control
-  modified connexion by Nicu FLORICA (niq_ro) from http://nicuflorica.blogspot.com
-  http://arduinotehniq.blogspot.com
-  http://www.tehnic.go.ro
-  http://www.arduinotehniq.com/
-  last change for manual adjust for hours and minutes, thermometer and higrometer: 11.08.2017, Craiova
-*/
-
 int digit1 = 11; //PWM pin for control digit 1 (left side)
 int digit2 = 10; //PWM pin for control digit 2
 int digit3 = 9;  //PWM pin for control digit 3
@@ -31,12 +20,6 @@ RTC_DS1307 RTC;
 #define EEPROM_ADDRESS  0x50
 
 static Eeprom24C32_64 eeprom(EEPROM_ADDRESS);
-// Date and time functions using a DS1307 RTC connected via I2C and Wire lib
-// original sketck from http://learn.adafruit.com/ds1307-real-time-clock-breakout-board-kit/
-// add part with SQW=1Hz from http://tronixstuff.wordpress.com/2010/10/20/tutorial-arduino-and-the-i2c-bus/
-// add part with manual adjust http://www.bristolwatch.com/arduino/arduino_ds1307.htm
-// original for common anode http://arduinotehniq.blogspot.ro/2014/09/manual-adjust-for-rtc-clock-with.html
-// changed for common catode in 7.2.2017
 
 #include "DHT.h"
 #define DHTPIN A3     // pin for connect data's sensor
@@ -53,21 +36,6 @@ int zm, um, miniti;
 
 int DISPLAY_BRIGHTNESS = 500;
 int parlak = 5;
-//Display brightness
-//Each digit is on for a certain amount of microseconds
-//Then it is off until we have reached a total of 20ms for the function call
-//Let's assume each digit is on for 1000us
-//Each digit is on for 1ms, there are 4 digits, so the display is off for 16ms.
-//That's a ratio of 1ms to 16ms or 6.25% on time (PWM).
-//Let's define a variable called brightness that varies from:
-//5000 blindingly bright (15.7mA current draw per digit)
-//2000 shockingly bright (11.4mA current draw per digit)
-//1000 pretty bright (5.9mA)
-//500 normal (3mA)
-//200 dim but readable (1.4mA)
-//50 dim but readable (0.56mA)
-//5 dim but readable (0.31mA)
-//1 dim but readable in dark (0.28mA)
 /*
   //for common catod
   #define DIGIT_ON  HIGH
