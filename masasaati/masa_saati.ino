@@ -276,7 +276,7 @@ void loop() {
         digitalWrite(sound, LOW);
       // display parts
       for (int i = 250 ; i > 0  ; i--) {
-        if (timp >= 1000) displayNumber011(timp1);
+        if (timp1 >= 1000) displayNumber011(timp1);
         else displayNumber022(timp1);
       }
       if (!(digitalRead(SW0)))
@@ -290,7 +290,7 @@ void loop() {
       }
       digitalWrite(sound, LOW);
       for (int i = 250 ; i > 0  ; i--) {
-        if (timp >= 1000) displayNumber033(timp1);
+        if (timp1 >= 1000) displayNumber033(timp1);
         else displayNumber044(timp1);
       }
       if (!(digitalRead(SW0)))
@@ -482,11 +482,11 @@ void loop() {
     if (!digitalRead(SW1)) // set minutes ++
     {
       gun++;
-      if (ay  == 1 || ay == 3 || ay == 5 || ay == 7 || ay == 8 || ay == 9) {
+      if (ay  == 1 || ay == 3 || ay == 5 || ay == 7 || ay == 8 || ay == 10 || ay == 12) {
         if (gun > 31) gun = 1;
         delay(100);
       }
-      if (ay  == 4 || ay == 6 || ay == 9 || ay == 11 || ay == 12) {
+      if (ay  == 4 || ay == 6 || ay == 9 || ay == 11) {
         if (gun > 30) gun = 1;
         delay(100);
       }
